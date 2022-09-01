@@ -2,7 +2,7 @@ import { refs } from "../helpler/refs";
 
 const throttle = require('lodash.throttle');
 
-const formData = {
+let formData = {
    
 };
 
@@ -15,10 +15,14 @@ function onSubmitForm(e) {
     e.preventDefault();
 
     console.log(formData);
-
+    
     localStorage.removeItem(`feedback-form-state`);
-
+     
     e.currentTarget.reset();
+    formData = {
+        email: ``,
+        message: ``,
+    };
 };
 
 function onFormInput(e) {
@@ -42,4 +46,5 @@ function populateForm() {
         formData.email = email;
         formData.message = message;
     }
+   
 };

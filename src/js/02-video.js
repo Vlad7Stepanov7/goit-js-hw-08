@@ -8,7 +8,8 @@ const player = new Player(iframe);
 
 // записуем в localeStorage текущее время раз в секунду
 player.on(`timeupdate`, throttle(function (data) {
-     const timeupdate = JSON.stringify(data);
+    const { seconds } = data;
+     const timeupdate = JSON.stringify(seconds);
     localStorage.setItem(`videoplayer-current-time`, timeupdate);
 }, 1000));
 
@@ -18,10 +19,9 @@ addEventListener(`DOMContentLoaded`, () => {
     try {
         // получаем текущее время из localeStorage
         const localeSeconds = JSON.parse(localStorage.getItem(`videoplayer-current-time`));
-        const { seconds } = localeSeconds;
 
         // используем библиотеку для запуска видео по текущему времени
-        player.setCurrentTime(seconds).then(function(seconds) {
+        player.setCurrentTime(localeSeconds).then(function(seconds) {
 }).catch(function(error) {
     switch (error.name) {
         case 'RangeError':
