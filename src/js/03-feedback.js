@@ -3,7 +3,8 @@ import { refs } from "../helpler/refs";
 const throttle = require('lodash.throttle');
 
 let formData = {
-   
+   email: ``,
+   message: ``,
 };
 
 populateForm();
